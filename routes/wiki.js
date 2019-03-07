@@ -35,8 +35,16 @@ router.get('/add', (req, res, next) => {
   res.send(addPage())
 });
 
-router.get('/:slug', (req, res, next) => {
-  res.send(`hit slug ${req.params.slug}`)
+router.get('/:slug', async (req, res, next) => {
+  let currentSlug = req.params.slug
+  let slugMatch = await Page.findOne({
+    where: {slug: currentSlug}
+  })
+  if (slugMatch === currentSlug) {
+    res.json(slugMatch)
+  } else {
+    res.sendStatus(404)
+  }
 })
 
 module.exports = router
