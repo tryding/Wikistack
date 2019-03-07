@@ -25,7 +25,7 @@ then(() => {
 })
 
 const init = async () => {
-    await models.db.sync({force: true})
+    await models.db.sync()
     app.listen(1337, () => {
         console.log('App listening')
     })

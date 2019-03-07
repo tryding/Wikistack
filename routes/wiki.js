@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const addPage = require('../views/addPage')
 const { Page, generateSlug } = require("../models");
-const wikiPage = require('../views/wikipage')
+const wikiPage = require('../views/wikiPage')
 
 router.get('/', (req, res, next) => {
   res.redirect('../')
@@ -31,13 +31,15 @@ router.get('/add', (req, res, next) => {
 });
 
 router.get('/:slug', async (req, res, next) => {
+  console.log(req.body.slug)
   try {
     let page = await Page.findOne({
       where: {slug: req.params.slug}
     })
     console.log(page)
-    res.json(wikiPage(page))
-  } catch(error) {next(error)}
+    res.send(wikiPage(page))
+  }
+  catch(error) {next(error)}
 })
 
 module.exports = router
