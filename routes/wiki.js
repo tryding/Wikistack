@@ -13,6 +13,5 @@ router.get('/add', (req, res, next) => {
   res.send('Its working')
 });
 
-module.exports = {
-  router
-}
+module.exports = router
+
