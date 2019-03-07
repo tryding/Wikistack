@@ -35,5 +35,9 @@ router.get('/add', (req, res, next) => {
   res.send(addPage())
 });
 
+router.get('/:slug', (req, res, next) => {
+  res.send(`hit slug ${req.params.slug}`)
+})
+
 module.exports = router
 
